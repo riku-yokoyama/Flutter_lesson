@@ -46,9 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
         // Centerを使用すると横は中央になるが、Columnを使用すると縦が上寄せになるので
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Image.networkウィジェットは変化しうるので、CenterWidgetはconstだとエラーになる
-          Image.network(
-              "https://www.calulu-dogwear.jp/html/plugin/Exp/assets/images/column/recommend/calulu_006/main.jpg"),
+          Row(children: [
+            // Image.networkウィジェットは変化しうるので、CenterWidgetはconstだとエラーになる
+            Image.network(
+                "https://www.calulu-dogwear.jp/html/plugin/Exp/assets/images/column/recommend/calulu_006/main.jpg",
+                width: 200,
+                height: 200),
+
+            Image.asset(
+              "assets/shiba.jpg",
+              width: 200,
+              height: 200,
+            ),
+          ]),
           Text("Centerにテキストウィジェットを配置してみる"),
           Text(
             "画面に長文を表示したいとき、FlutterではmaxLinesを使用することで最大行数の指定や、overflowで最大範囲を超えた際の挙動を制御できる",
