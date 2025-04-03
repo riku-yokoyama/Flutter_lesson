@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutterウィジェット勉強用アプリ',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -49,14 +49,18 @@ class _MyHomePageState extends State<MyHomePage> {
           Row(children: [
             // Image.networkウィジェットは変化しうるので、CenterWidgetはconstだとエラーになる
             Image.network(
-                "https://www.calulu-dogwear.jp/html/plugin/Exp/assets/images/column/recommend/calulu_006/main.jpg",
-                width: 200,
-                height: 200),
+              "https://www.calulu-dogwear.jp/html/plugin/Exp/assets/images/column/recommend/calulu_006/main.jpg",
+              width: 200,
+              height: 200,
+              // 横並びの画像を強制的に同じサイズにする
+              fit: BoxFit.cover,
+            ),
 
             Image.asset(
               "assets/shiba.jpg",
               width: 200,
               height: 200,
+              fit: BoxFit.cover,
             ),
           ]),
           Text("Centerにテキストウィジェットを配置してみる"),
@@ -65,8 +69,17 @@ class _MyHomePageState extends State<MyHomePage> {
             maxLines: 2, // 最大行数を2行に指定
             overflow: TextOverflow.ellipsis, // 未切れを…で表現する
           ),
-          Text(
-              "もしFlutterでmaxLinesやoverflowを使用しないと、行数や見切れを制御することなく、ひたすらにすべてを表示しきるまで改行し続けて制御することなく冗長に文章が表示されます。"),
+
+          // 以下のテキストウィジェットをコンテナでラップし、コンテナの背景色を足す。
+          // テキストウィジェットをさらにPaddingウィジェットでラップし、Edge(画面端)からの距離を設定する
+          Container(
+            color: Colors.amberAccent,
+            child: const Padding(
+              padding: EdgeInsets.all(25),
+              child: Text(
+                  "もしFlutterでmaxLinesやoverflowを使用しないと、行数や見切れを制御することなく、ひたすらにすべてを表示しきるまで改行し続けて制御することなく冗長に文章が表示されます。"),
+            ),
+          ),
           Text(
             "これは青色の太文字です",
             style: TextStyle(
