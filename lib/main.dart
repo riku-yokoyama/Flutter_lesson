@@ -80,14 +80,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   "もしFlutterでmaxLinesやoverflowを使用しないと、行数や見切れを制御することなく、ひたすらにすべてを表示しきるまで改行し続けて制御することなく冗長に文章が表示されます。"),
             ),
           ),
-          Text(
-            "これは青色の太文字です",
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          )
+          // Paddingで指定せずとも、Alignで上下左右を指定してラップすることもできる
+          Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "これは青色の太文字です",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
+         TextButton(
+            //重要!!! onPressedは引数に関数を取るプロパティなので、直接printではなく、関数を渡す必要がある
+            //ここでは、使い捨て関数（無名関数、ラムダ式）を(){処理}の形で定義して関数を渡している
+             onPressed: () {
+               print("ボタンが押されました");
+             },
+             child: Text("ボタンです"))
         ],
       )),
     );
