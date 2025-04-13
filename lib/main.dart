@@ -91,13 +91,31 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                 ),
               )),
-         TextButton(
-            //重要!!! onPressedは引数に関数を取るプロパティなので、直接printではなく、関数を渡す必要がある
-            //ここでは、使い捨て関数（無名関数、ラムダ式）を(){処理}の形で定義して関数を渡している
-             onPressed: () {
-               print("ボタンが押されました");
-             },
-             child: Text("ボタンです"))
+          ElevatedButton (
+              //重要!!! onPressedは引数に関数を取るプロパティなので、直接printではなく、関数を渡す必要がある
+              //ここでは、使い捨て関数（無名関数、ラムダ式）を(){処理}の形で定義して関数を渡している
+              onPressed: () {
+                // テキストボタン押下時の動きとしてダイアログを定義
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("お知らせ"),
+                        content: Text(
+                          "アラートダイアログです",
+                        ),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                // 元の画面へ戻るを表す定型文（pop=前の画面に戻る)
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("close"))
+                        ],
+                      );
+                    });
+              },
+              child: Text("お知らせがあります"))
         ],
       )),
     );
