@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                 ),
               )),
-          ElevatedButton (
+          OutlinedButton (
               //重要!!! onPressedは引数に関数を取るプロパティなので、直接printではなく、関数を渡す必要がある
               //ここでは、使い捨て関数（無名関数、ラムダ式）を(){処理}の形で定義して関数を渡している
               onPressed: () {
